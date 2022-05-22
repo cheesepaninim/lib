@@ -1,0 +1,23 @@
+{
+  "name": "personal_lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "argsType.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheesepaninim/lib.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cheesepaninim/lib/issues"
+  },
+  "homepage": "https://github.com/cheesepaninim/lib#readme"
+}
