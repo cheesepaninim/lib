@@ -2,7 +2,7 @@
   "name": "personal_lib",
   "version": "1.0.0",
   "description": "",
-  "main": "argsType.js",
+  "main": "js/argsType.js",
   "directories": {
     "test": "test"
   },
