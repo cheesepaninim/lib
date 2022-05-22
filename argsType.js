@@ -1,3 +1,5 @@
+const { getType } = require('./typeCheck')
+
 const argsType = (...args) => {
     const it = args.values()
     let iter = it.next()
@@ -6,7 +8,7 @@ const argsType = (...args) => {
 
     while (!iter.done) {
         const val = iter.value
-        const type = require('./typeCheck')(val)
+        const type = getType(val)
 
         const typeMap = types.get(type) || new Map()
         const valCount = typeMap.get(val) ? typeMap.get(val)+1 : 1
