@@ -29,3 +29,11 @@ test('toCamel', () => {
     expect(toCamel(str2)).toEqual([ 'abAbbdCx', true ])
     expect(toCamel(str3)).toEqual([ 'abAbCdefgGha', true ])
 })
+
+// classSample.js
+const { Library } = require('../js/classSample')
+test('classSample', () => {
+    const input = Library('test').addText('_007').addText('_A').get()
+    const output = 'test_007_A'
+    expect(input).toEqual(output)
+})
