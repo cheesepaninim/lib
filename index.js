@@ -2,7 +2,7 @@
     'use strict';
 
     // TODO: 이름 수정
-    let plib = {};
+    let plib;
     
     plib.argsType = require('./js/argsType');
     plib.convention = require('./js/convention');
