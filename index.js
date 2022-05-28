@@ -1,19 +1,21 @@
 (function(globals) {
     'use strict';
 
-
-
-
+    // TODO: 이름 수정
+    let plib = {};
     
-    // define & exports & register func :: async waterfall - 참조
+    plib.argsType = require('./js/argsType');
+    plib.convention = require('./js/convention');
+    plib.typeCheck = require('./js/typeCheck');
 
-    // if (typeof define !== 'undefined' && define.amd) {
-    //     define([], function () {
-    //         return waterfall;
-    //     }); // RequireJS
-    // } else if (typeof module !== 'undefined' && module.exports) {
-    //     module.exports = waterfall; // CommonJS
-    // } else {
-    //     globals.asyncWaterfall = waterfall; // <script>
-    // }
+    // async-waterfall 참고
+    if (typeof define !== 'undefined' && define.amd) {
+        define([], function () {
+            return plib;
+        }); // RequireJS
+    } else if (typeof module !== 'undefined' && module.exports) {
+        module.exports = plib; // CommonJS
+    } else {
+        globals.asyncWaterfall = plib; // <script>
+    }
 })(this);
