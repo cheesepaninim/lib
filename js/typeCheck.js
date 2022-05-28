@@ -4,6 +4,8 @@
 //                 : isNaN(Number(v.length)) ? 'object'
 //                 : 'array'
 
+// TODO: array type check 방식 수정 - async-waterfall 참고
+
 exports.getType = v => typeof v !== 'object' ? typeof v
                     : v === null ? 'null'
                     : v === undefined ? 'null'

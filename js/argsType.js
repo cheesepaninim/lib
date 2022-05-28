@@ -21,7 +21,4 @@ const argsType = (...args) => {
     return types
 }
 
-// test
-const args = argsType('a', 'b', null, 'undefined', [], { name: 'Dr.Jones', age : 81 }, 'a', 100, [ 2, 3, 5, 8, 13 ], 'abc', undefined)
-console.log(`argsType('a', 'b', null, 'undefined', [], { name: 'Dr.Jones', age : 81 }, 'a', 100, [ 2, 3, 5, 8, 13 ], 'abc', undefined)`)
-console.log(args)
+module.exports = argsType
