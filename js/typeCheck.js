@@ -4,18 +4,33 @@
 //                 : isNaN(Number(v.length)) ? 'object'
 //                 : 'array'
 
-// TODO: array type check 방식 수정 - async-waterfall 참고
+const isNull = v => v === null
+const isUndefined = v => v === undefined
+const isString = v => typeof v === 'string'
+const isNumber = v => typeof v === 'number'
+const isMap = v => v instanceof Map
+const isSet = v => v instanceof Set
+const isError = v => v instanceof Error
+const isObject = v =>
+    Object.prototype.toString.call({}) === '[object Object]'
+    || (typeof v === 'object' && isNaN(Number(v.length))
+    && !isMap(v) && !isSet(v) && !isError(v))
+const isArray = v => (Array.isArray && Array.isArray(v))
+    || Object.prototype.toString.call(v) === '[object Array]'
+    || typeof v === 'object' && !isNaN(Number(v.length))
+const isSymbol = v => typeof v === 'symbol'
 
-exports.getType = v => typeof v !== 'object' ? typeof v
-                    : v === null ? 'null'
-                    : v === undefined ? 'null'
-                    : isNaN(Number(v.length)) ? 'object'
-                    : 'array'
+const getType = v => typeof v !== 'object' ? typeof v
+                    : isNull(v) ? 'null'
+                    : isUndefined(v) ? 'undefined'
+                    : isMap(v) ? 'map'
+                    : isSet(v) ? 'set'
+                    : isError(v) ? 'error'
+                    : isArray(v) ? 'array'
+                    : 'object'
 
-exports.isNull = v => v === null
-exports.isUndefined = v => v === undefined
-exports.isString = v => typeof v === 'string'
-exports.isNumber = v => typeof v === 'number'
-exports.isObject = v => typeof v === 'object' && isNaN(Number(v.length))
-exports.isArray = v => typeof v === 'object' && !isNaN(Number(v.length))
-exports.isSymbol = v => typeof v === 'symbol'
+module.exports = {
+    isNull, isUndefined, isString, isNumber, isSymbol,
+    isObject, isArray, isMap, isSet, isError,
+    getType
+}

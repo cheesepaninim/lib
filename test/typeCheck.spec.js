@@ -6,7 +6,10 @@ const {
     isNumber,
     isObject,
     isArray,
-    isSymbol
+    isSymbol,
+    isMap,
+    isSet,
+    isError
 } = require('../js/typeCheck')
 
 const str = [
@@ -29,6 +32,10 @@ const sym = [
 const _null = [null]
 let _u
 const _undefined = [ undefined, _u, obj[0].a ]
+
+const map = new Map()
+const set = new Set()
+const err = new Error()
 
 describe('typeCheck.js', () => {
 
@@ -53,6 +60,15 @@ describe('typeCheck.js', () => {
     test('isUndefined', () => {
         _undefined.map(v => expect(isUndefined(v)).toBeTruthy())
     })
+    test('isMap', () => {
+        expect(isMap(map)).toBeTruthy()
+    })
+    test('isSet', () => {
+        expect(isSet(set)).toBeTruthy()
+    })
+    test('isError', () => {
+        expect(isError(err)).toBeTruthy()
+    })
 
     test('getType', () => {
         str.map(v => expect(getType(v)).toBe('string'))
@@ -62,5 +78,8 @@ describe('typeCheck.js', () => {
         sym.map(v => expect(getType(v)).toBe('symbol'))
         _null.map(v => expect(getType(v)).toBe('null'))
         _undefined.map(v => expect(getType(v)).toBe('undefined'))
+        expect(getType(map)).toBe('map')
+        expect(getType(set)).toBe('set')
+        expect(getType(err)).toBe('error')
     })
 })
