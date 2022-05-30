@@ -4,6 +4,7 @@ const {
     isUndefined,
     isString,
     isNumber,
+    isFunction,
     isObject,
     isArray,
     isSymbol,
@@ -19,6 +20,9 @@ const str = [
 const num = [
     123, 0, -12, -12.3, Math.random() * 3, NaN, Infinity, -Infinity,
     parseInt('123'), parseInt('-123'), Number('abc')
+]
+const fn = [
+    () => {}, function(){}, (function(){ return function(){} })()
 ]
 const obj = [
     {}, { a: 3, b: 5, c: 7 }, JSON.parse('{ "test" : "test" }')
@@ -44,6 +48,9 @@ describe('typeCheck.js', () => {
     })
     test('isNumber', () => {
         num.map(v => expect(isNumber(v)).toBeTruthy())
+    })
+    test('isFunction', () => {
+        fn.map(v => expect(isFunction(v)).toBeTruthy())
     })
     test('isObject', () => {
         obj.map(v => expect(isObject(v)).toBeTruthy())

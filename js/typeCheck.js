@@ -8,6 +8,7 @@ const isNull = v => v === null
 const isUndefined = v => v === undefined
 const isString = v => typeof v === 'string'
 const isNumber = v => typeof v === 'number'
+const isFunction = v => typeof v === 'function'
 const isMap = v => v instanceof Map
 const isSet = v => v instanceof Set
 const isError = v => v instanceof Error
@@ -30,7 +31,7 @@ const getType = v => typeof v !== 'object' ? typeof v
                     : 'object'
 
 module.exports = {
-    isNull, isUndefined, isString, isNumber, isSymbol,
+    isNull, isUndefined, isString, isNumber, isFunction, isSymbol,
     isObject, isArray, isMap, isSet, isError,
     getType
 }
