@@ -9,8 +9,8 @@ const interceptor = (task, callback) => (...args) => {
 }
 
 const defaultCallback = (...args) => !(argsType(...args).get('error'))
-    ? args
-    : argsType(...args).get('error')
+    ? console.log(args)
+    : console.log(argsType(...args).get('error'))
 
 const waterfall = (tasks, callback) => {
     // TODO: tasks array check
