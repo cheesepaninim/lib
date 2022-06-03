@@ -13,7 +13,7 @@ const isMap = v => v instanceof Map
 const isSet = v => v instanceof Set
 const isError = v => v instanceof Error
 const isObject = v =>
-    Object.prototype.toString.call({}) === '[object Object]'
+    Object.prototype.toString.call(v) === '[object Object]'
     || (typeof v === 'object' && isNaN(Number(v.length))
     && !isMap(v) && !isSet(v) && !isError(v))
 const isArray = v => (Array.isArray && Array.isArray(v))
