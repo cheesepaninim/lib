@@ -19,3 +19,5 @@ test('toCamel', () => {
     expect(toCamel(str2)).toEqual([ 'abAbbdCx', true ])
     expect(toCamel(str3)).toEqual([ 'abAbCdefgGha', true ])
 })
+
+// TODO: keyTo(convention, o)

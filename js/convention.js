@@ -1,6 +1,6 @@
-// TODO: 아래 코드 전체 정리
-const { isString } =  require('./typeCheck')
+const { isString, isObject } =  require('./typeCheck')
 
+// TODO: 아래 코드 전체 정리
 // TODO: 입력 값 특수 문자 체크
 // undefined / '' / (숫자) 등 예외 처리 확인
 const isValidate = s => (isString(s) && s.length)
@@ -60,7 +60,7 @@ const toGeneralCase = s => {
  * @param s
  * @returns {[ string parsedString, boolean isParsed ]}
  */
-exports.toSnake = s => {
+const toSnake = s => {
     if(!isValidate(s) || getCase(s) === 'snake') return [ s, false ]
 
     const { str, idx } = toGeneralCase(s)
@@ -73,7 +73,9 @@ exports.toSnake = s => {
 
     return [ parsed, true ]
 }
-exports.toPascal = s => {
+exports.toSnake = toSnake
+
+const toPascal = s => {
     if(!isValidate(s) || getCase(s) === 'pascal') return [ s, false ]
 
     const { str, idx } = toGeneralCase(s)
@@ -85,7 +87,9 @@ exports.toPascal = s => {
 
     return [ parsed, true ]
 }
-exports.toCamel = s => {
+exports.toPascal = toPascal
+
+const toCamel = s => {
     if(!isValidate(s) || getCase(s) === 'camel') return [ s, false ]
 
     const { str, idx } = toGeneralCase(s)
@@ -97,4 +101,37 @@ exports.toCamel = s => {
     })
 
     return [ parsed, true ]
+}
+exports.toCamel = toCamel
+
+/**
+ *
+ * @param o object
+ * @returns [ object { parsedKey : value (, parsedKey : value (, parsedKey : value )) }, boolean isParsed ]
+ *
+ * ※ return true regardless of the original key's convention type
+ */
+exports.keyTo = (convention, o) => {
+    if(!isObject(o) || !Object.keys(o).length) return [ o, false ]
+    if(!['snake', 'pascal', 'camel'].includes(convention)) return [ o, false ]
+
+    const parser = { snake: toSnake, pascal: toPascal, camel: toCamel }
+
+    const parsedKeys = Object.keys(o).map(key => {
+        const keyMap = {}
+        keyMap[parser[convention](key)[0]] = key
+        return keyMap
+    }) // [ { [ parsedKey ] : key } (, { [ parsedKey ] : key } (, { [ parsedKey ] : key } ) ) ]
+
+    return [
+        parsedKeys.reduce((acc, cur) => {
+            const parsedKey = Object.keys(cur)[0]
+            const originalKey = cur[parsedKey]
+
+            // TODO: deep copy 방식 변경?
+            acc[parsedKey] = JSON.parse(JSON.stringify(o[originalKey]))
+
+            return acc
+        }, {}), true
+    ]
 }
