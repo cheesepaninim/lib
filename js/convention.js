@@ -44,13 +44,16 @@ const getCase = s => isSnakeCase(s) ? 'snake'
 
 const toGeneralCase = s => {
     const parsed = getCase(s) === 'snake'
-        ? s.replace(/_/g, '')
+        ? s.replace(/_/g, '').toLowerCase()
         : s.toLowerCase()
 
     const indices = getCase(s) === 'snake'
         ? getIndices(s, '_').map((v, i) => v - i)
-        : removeDuplication(s.match(upperCaseRegexp)).reduce((acc, cur) => [ ...acc, ...getIndices(s, cur) ], [])
-            .sort((a, b) => a > b ? 1 : a < b ? -1 : 0)
+        : s.match(upperCaseRegexp)
+        ? removeDuplication(s.match(upperCaseRegexp))
+                .reduce((acc, cur) => [ ...acc, ...getIndices(s, cur) ], [])
+                .sort((a, b) => a > b ? 1 : a < b ? -1 : 0)
+        : [] // when given string doesn't match snake / camel / pascal
 
     return { str: parsed, idx: indices }
 }
@@ -104,6 +107,9 @@ const toCamel = s => {
 }
 exports.toCamel = toCamel
 
+
+
+// key 중첩 등 이슈로 export X
 /**
  *
  * @param o object
@@ -111,7 +117,7 @@ exports.toCamel = toCamel
  *
  * ※ return true regardless of the original key's convention type
  */
-exports.keyTo = (convention, o) => {
+const keyTo = (convention, o) => {
     if(!isObject(o) || !Object.keys(o).length) return [ o, false ]
     if(!['snake', 'pascal', 'camel'].includes(convention)) return [ o, false ]
 
@@ -135,3 +141,7 @@ exports.keyTo = (convention, o) => {
         }, {}), true
     ]
 }
+
+const keyToSnake = o => keyTo('snake', o)
+const keyToPascal = o => keyTo('pascal', o)
+const keyToCamel = o => keyTo('camel', o)
