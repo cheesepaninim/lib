@@ -16,6 +16,6 @@
     } else if (typeof module !== 'undefined' && module.exports) {
         module.exports = plib; // CommonJS
     } else {
-        globals.asyncWaterfall = plib; // <script>
+        globals.plib = plib; // <script>
     }
 })(this);
