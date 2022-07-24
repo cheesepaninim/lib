@@ -1,6 +1,6 @@
 {
   "name": "chsp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "cheesepaninim's personal library - support async functions waterfall execute, check arguments type, ...",
   "main": "./index.js",
   "directories": {
