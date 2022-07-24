@@ -1,22 +1,22 @@
 (function(globals) {
     'use strict'
 
-    let plib;
+    let chsp;
     
-    plib.argsType = require('./js/argsType');
-    plib.convention = require('./js/convention');
-    plib.typeCheck = require('./js/typeCheck');
-    plib.pathAndValue = require('./js/pathAndValue');
-    plib.waterfall = require('./js/waterfall');
+    chsp.argsType = require('./js/argsType');
+    chsp.convention = require('./js/convention');
+    chsp.typeCheck = require('./js/typeCheck');
+    chsp.pathAndValue = require('./js/pathAndValue');
+    chsp.waterfall = require('./js/waterfall');
 
     // async-waterfall 참고
     if (typeof define !== 'undefined' && define.amd) {
         define([], function () {
-            return plib;
+            return chsp;
         }); // RequireJS
     } else if (typeof module !== 'undefined' && module.exports) {
-        module.exports = plib; // CommonJS
+        module.exports = chsp; // CommonJS
     } else {
-        globals.plib = plib; // <script>
+        globals.chsp = chsp; // <script>
     }
 })(this);

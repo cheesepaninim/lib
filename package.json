@@ -1,8 +1,8 @@
 {
-  "name": "personal_lib",
+  "name": "chsp",
   "version": "0.1.0",
-  "description": "",
-  "main": "js/argsType.js",
+  "description": "cheesepaninim's personal library - support async functions waterfall execute, check arguments type, ...",
+  "main": "./index.js",
   "directories": {
     "test": "test"
   },
@@ -13,17 +13,18 @@
     "type": "git",
     "url": "git+https://github.com/cheesepaninim/lib.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["personal-library", "async-waterfall", "arguments-type", "convention", "path-and-values", "type-check"],
+  "author": {
+    "name": "Cheesepaninim",
+    "url": "https://cheesepaninim.vercel.app"
+  },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cheesepaninim/lib/issues"
+    "url": "https://github.com/cheesepaninim/lib/issues",
+    "email": "cheesepaninim@gmail.com"
   },
-  "homepage": "https://github.com/cheesepaninim/lib#readme",
+  "homepage": "https://github.com/cheesepaninim/lib",
   "devDependencies": {
     "jest": "^28.1.0"
-  },
-  "dependencies": {
-    "async-waterfall": "^0.1.5"
   }
 }
