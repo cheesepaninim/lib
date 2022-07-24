@@ -1,7 +1,6 @@
 (function(globals) {
     'use strict'
 
-    // TODO: 이름 수정
     let plib;
     
     plib.argsType = require('./js/argsType');
